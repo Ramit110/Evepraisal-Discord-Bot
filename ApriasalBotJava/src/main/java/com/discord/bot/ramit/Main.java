@@ -20,6 +20,7 @@ public class Main {
             event ->
             {
                 String[] eventBrokenUp = event.getMessage().getContent().split("\n");
+
                 if (eventBrokenUp[0].equalsIgnoreCase("!evepraisal"))
                 {
                     if(eventBrokenUp.length == 1)

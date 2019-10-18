@@ -29,7 +29,6 @@ public class Main {
                     }
                     else
                     {
-                        Main current = new Main();
                         try
                         {
                             JSONObject request = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(eventBrokenUp, 0, eventBrokenUp.length));
@@ -44,7 +43,7 @@ public class Main {
                         }
                         catch (JSONException e)
                         {
-                            event.getChannel().sendMessage("Error 001 - Error parsing JSON.");
+                            event.getChannel().sendMessage("Error 002 - Error parsing JSON.");
                         }
                     }
                 }

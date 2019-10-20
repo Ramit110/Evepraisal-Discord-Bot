@@ -1,4 +1,4 @@
-package com.discord.bot.ramit;
+package com.discord.bot.ramit.eveutil;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;

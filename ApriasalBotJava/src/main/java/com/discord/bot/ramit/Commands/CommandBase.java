@@ -2,7 +2,7 @@ package com.discord.bot.ramit.Commands;
 
 import java.util.Arrays;
 
-public abstract class CommandBase implements ICommandExecution {
+public abstract class CommandBase {
     protected String[] parameters;
     protected String[] message;
 
@@ -13,4 +13,5 @@ public abstract class CommandBase implements ICommandExecution {
         message = Arrays.copyOfRange(newMessage, 1, newMessage.length);
     }
 
+    public abstract String run();
 }

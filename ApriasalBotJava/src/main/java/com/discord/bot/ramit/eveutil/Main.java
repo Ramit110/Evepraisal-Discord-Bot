@@ -14,9 +14,11 @@ public class Main {
         api.addMessageCreateListener(
             event ->
             {
-                String[] eventBrokenUp = event.getMessage().getContent().split("\n");
-                CommandBase commandMain = new CommandBuilder(eventBrokenUp).getCommand();
-                event.getChannel().sendMessage(commandMain.run());
+                event.getChannel().sendMessage(
+                        new CommandParser(
+                                event.getMessage().getContent().split("\n")
+                        ).runCommand()
+                );
             }
         );
 

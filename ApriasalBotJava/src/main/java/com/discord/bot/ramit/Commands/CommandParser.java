@@ -1,9 +1,9 @@
 package com.discord.bot.ramit.Commands;
 
-public class CommandBuilder {
+public class CommandParser {
     private CommandBase command;
 
-    public CommandBuilder(String[] message)
+    public CommandParser(String[] message)
     {
         switch (message[0].split(" ")[0])
         {
@@ -16,8 +16,12 @@ public class CommandBuilder {
         }
     }
 
-    public CommandBase getCommand()
+    public String runCommand()
     {
-        return command;
+        if(command != null)
+        {
+            return command.run();
+        }
+        return "";
     }
 }

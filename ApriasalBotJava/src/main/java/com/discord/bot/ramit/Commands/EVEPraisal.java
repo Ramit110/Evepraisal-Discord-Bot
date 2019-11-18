@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class EVEPraisal extends CommandBase implements ICommandExecution
+public class EVEPraisal extends CommandBase
 {
     public EVEPraisal(String[] newMessage)
     {
@@ -18,6 +18,10 @@ public class EVEPraisal extends CommandBase implements ICommandExecution
     {
         String output = "";
 
+        if(message.length == 0)
+        {
+            return "You may want to add some.... things to that request";
+        }
         try
         {
             JSONObject request = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length));

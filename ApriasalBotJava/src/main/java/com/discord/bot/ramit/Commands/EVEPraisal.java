@@ -24,18 +24,32 @@ public class EVEPraisal extends CommandBase
         }
         try
         {
-            JSONObject request = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length));
-            request = (JSONObject) request.get("appraisal");
-            request = (JSONObject) request.get("totals");
-            output = "```Volume is: " + request.get("volume") + "\nBuy value:" + request.get("buy") + "\nSell value:" + request.get("sell") + "```";
+            JSONObject requestMain = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length));
+
+            requestMain = requestMain.getJsonObject("appraisal");
+
+            JSONArray requestItems = requestMain.getJsonArray("items");
+            requestMain = requestMain.getJsonObject("totals");
+
+            for (JSONObject items : requestItems) {
+                output +=
+                    "```" + items.get("name") +
+                            "\nVolume:" + (items.getInt("typeVolume") * items.getInt("quantity")) + "```"+
+                            "\nSell Value:" + items.getJsonObiect("buy").get("avg") + "```"+
+                            "\nBuy Value:" + items.getJsonObiect("buy").get("avg") + "```";
+            }
+            output +=
+                    "```Total Volume is: " + requestMain.get("volume") +
+                    "\nBuy value:" + requestMain.get("buy") +
+                    "\nSell value:" + requestMain.get("sell") + "```";
         }
         catch (IOException e)
         {
-            output = "Error 001 - Error while getting data";
+            output += "Error 001 - Error while getting data";
         }
         catch (JSONException e)
         {
-            output = "Error 002 - Error parsing JSON.";
+            output += "Error 002 - Error parsing JSON";
         }
 
         return output;

@@ -1,6 +1,7 @@
 package com.discord.bot.ramit.Commands;
 
 import com.discord.bot.ramit.eveutil.EvepraisalAPI;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,17 +27,18 @@ public class EVEPraisal extends CommandBase
         {
             JSONObject requestMain = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length));
 
-            requestMain = requestMain.getJsonObject("appraisal");
+            requestMain = requestMain.getJSONObject("appraisal");
 
-            JSONArray requestItems = requestMain.getJsonArray("items");
-            requestMain = requestMain.getJsonObject("totals");
+            JSONArray requestItems = requestMain.getJSONArray("items");
+            requestMain = requestMain.getJSONObject("totals");
 
-            for (JSONObject items : requestItems) {
+            for (Object objects : requestItems) {
+                JSONObject items = (JSONObject)objects;
                 output +=
                     "```" + items.get("name") +
-                            "\nVolume:" + (items.getInt("typeVolume") * items.getInt("quantity")) + "```"+
-                            "\nSell Value:" + items.getJsonObiect("buy").get("avg") + "```"+
-                            "\nBuy Value:" + items.getJsonObiect("buy").get("avg") + "```";
+                    "\nVolume:" + (items.getFloat("typeVolume") * items.getInt("quantity"))+
+                    "\nSell Value:" + items.getJSONObject("prices").getJSONObject("sell").get("avg") +
+                    "\nBuy Value:" + items.getJSONObject("prices").getJSONObject("buy").get("avg") + "```";
             }
             output +=
                     "```Total Volume is: " + requestMain.get("volume") +

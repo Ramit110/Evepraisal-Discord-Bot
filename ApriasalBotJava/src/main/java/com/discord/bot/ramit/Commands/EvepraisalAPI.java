@@ -1,4 +1,4 @@
-package com.discord.bot.ramit.eveutil;
+package com.discord.bot.ramit.Commands;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.discord.bot.ramit.eveutil.Secrets;
 import org.json.JSONObject;
 
 import org.apache.http.HttpResponse;

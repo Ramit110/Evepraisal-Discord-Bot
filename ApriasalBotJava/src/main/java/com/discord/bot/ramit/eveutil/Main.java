@@ -13,13 +13,11 @@ public class Main {
         // Add a listener which answers with "Pong!" if someone writes "!ping"
         api.addMessageCreateListener(
             event ->
-            {
                 event.getChannel().sendMessage(
                         new CommandParser(
                                 event.getMessage().getContent().split("\n")
                         ).runCommand()
-                );
-            }
+                )
         );
 
         // Print the invite url of your bot

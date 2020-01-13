@@ -1,6 +1,5 @@
 package com.discord.bot.ramit.Commands;
 
-import com.discord.bot.ramit.eveutil.EvepraisalAPI;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,27 +22,22 @@ public class EVEPraisal extends CommandBase
         {
             return "You may want to add some.... things to that request";
         }
+
         try
         {
             JSONObject requestMain = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length));
 
             requestMain = requestMain.getJSONObject("appraisal");
 
-            JSONArray requestItems = requestMain.getJSONArray("items");
-            requestMain = requestMain.getJSONObject("totals");
+            output += "Link: https://evepraisal.com/a/" + requestMain.get("id") + "\n";
 
-            for (Object objects : requestItems) {
-                JSONObject items = (JSONObject)objects;
-                output +=
-                    "```" + items.get("name") +
-                    "\nVolume:" + (items.getFloat("typeVolume") * items.getInt("quantity"))+
-                    "\nSell Value:" + items.getJSONObject("prices").getJSONObject("sell").get("avg") +
-                    "\nBuy Value:" + items.getJSONObject("prices").getJSONObject("buy").get("avg") + "```";
-            }
+            output += objectParse(requestMain.getJSONArray("items"));
+
+            JSONObject totalValues = requestMain.getJSONObject("totals");
             output +=
-                    "```Total Volume is: " + requestMain.get("volume") +
-                    "\nBuy value:" + requestMain.get("buy") +
-                    "\nSell value:" + requestMain.get("sell") + "```";
+                    "```Total Volume is: " + totalValues.get("volume") +
+                    "\nBuy value:" + totalValues.get("buy") +
+                    "\nSell value:" + totalValues.get("sell") + "```";
         }
         catch (IOException e)
         {
@@ -55,5 +49,19 @@ public class EVEPraisal extends CommandBase
         }
 
         return output;
+    }
+
+    protected String objectParse(JSONArray inputArr)
+    {
+        String tbr = "";
+        for (Object objects : inputArr) {
+            JSONObject items = (JSONObject)objects;
+            tbr +=
+                    "```" + items.get("name") +
+                            "\nVolume: " + items.get("typeVolume") +
+                            "\nQuantity: "+ items.get("quantity") +
+                            "\nTotal Volume: "+ (items.getInt("quantity") * items.getInt("quantity")) + "```";
+        }
+        return tbr;
     }
 }

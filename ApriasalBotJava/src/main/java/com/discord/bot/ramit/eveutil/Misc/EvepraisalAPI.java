@@ -48,9 +48,9 @@ public class EvepraisalAPI {
 
         for(int x = 0; x < parameters.length; x++)
         {
-            if(parameters[x] == "-p" && x < parameters.length)
+            if(parameters[x].equals("-p") && x+1 < parameters.length)
             {
-                urlParameters.add(new BasicNameValuePair("", parameters[x+1]));
+                urlParameters.add(new BasicNameValuePair("price_percentage", parameters[x+1]));
             }
         }
 

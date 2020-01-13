@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class EVEPraisal extends CommandBase
+public class EVEPraisal extends JSONParsing
 {
     public EVEPraisal(String[] newMessage)
     {
@@ -52,17 +52,4 @@ public class EVEPraisal extends CommandBase
         return output;
     }
 
-    protected String objectParse(JSONArray inputArr)
-    {
-        String tbr = "";
-        for (Object objects : inputArr) {
-            JSONObject items = (JSONObject)objects;
-            tbr +=
-                    "```" + items.get("name") +
-                            "\nVolume: " + items.get("typeVolume") +
-                            "\nQuantity: "+ items.get("quantity") +
-                            "\nTotal Volume: "+ (items.getInt("quantity") * items.getInt("quantity")) + "```";
-        }
-        return tbr;
-    }
 }

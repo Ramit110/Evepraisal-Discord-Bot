@@ -4,9 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public abstract class EVEPraisalCommands extends CommandBase
+public abstract class JSONParsing extends CommandBase
 {
-    public EVEPraisalCommands(String[] newMessage)
+    public JSONParsing(String[] newMessage)
     {
         super(newMessage);
     }

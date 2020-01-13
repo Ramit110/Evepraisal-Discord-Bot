@@ -26,7 +26,7 @@ public class EVEPraisal extends CommandBase
 
         try
         {
-            JSONObject requestMain = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length));
+            JSONObject requestMain = EvepraisalAPI.Mainapraisal(Arrays.copyOfRange(message, 0, message.length), parameters);
 
             requestMain = requestMain.getJSONObject("appraisal");
 

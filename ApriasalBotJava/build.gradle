@@ -17,4 +17,5 @@ dependencies {
     compile 'org.json:json:20171018'
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'
 }

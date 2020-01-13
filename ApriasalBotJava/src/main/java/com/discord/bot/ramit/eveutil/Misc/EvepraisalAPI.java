@@ -22,7 +22,7 @@ import org.apache.http.message.BasicNameValuePair;
 public class EvepraisalAPI {
     private static HttpPost post = new HttpPost("https://evepraisal.com/appraisal.json");
 
-    public static JSONObject Mainapraisal(String[] requestData) throws IOException
+    public static JSONObject Mainapraisal(String[] requestData, String[] parameters) throws IOException
     {
         // Create the client
         HttpClient client = HttpClients.custom()

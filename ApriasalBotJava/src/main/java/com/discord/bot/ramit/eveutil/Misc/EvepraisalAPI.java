@@ -1,4 +1,4 @@
-package com.discord.bot.ramit.eveutil;
+package com.discord.bot.ramit.eveutil.Misc;
 
 import java.io.BufferedReader;
 import java.io.IOException;

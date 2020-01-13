@@ -10,7 +10,6 @@ public class Main {
 
         DiscordApi api = new DiscordApiBuilder().setToken(Secrets.BotID).login().join();
 
-        // Add a listener which answers with "Pong!" if someone writes "!ping"
         api.addMessageCreateListener(
             event ->
                 event.getChannel().sendMessage(
@@ -20,7 +19,6 @@ public class Main {
                 )
         );
 
-        // Print the invite url of your bot
         System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());
     }
 }

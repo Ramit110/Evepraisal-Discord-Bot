@@ -1,6 +1,6 @@
 package com.discord.bot.ramit.Commands;
 
-import com.discord.bot.ramit.eveutil.EvepraisalAPI;
+import com.discord.bot.ramit.eveutil.Misc.EvepraisalAPI;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

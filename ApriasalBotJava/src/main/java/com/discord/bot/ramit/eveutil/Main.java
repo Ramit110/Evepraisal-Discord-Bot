@@ -14,7 +14,7 @@ public class Main {
             event ->
                 event.getChannel().sendMessage(
                         new CommandParser(
-                                event.getMessage().getContent().split("\n")
+                                event.getMessage().getContent().toLowerCase().split("\n")
                         ).runCommand()
                 )
         );
